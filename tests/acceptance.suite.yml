@@ -8,7 +8,7 @@ actor: AcceptanceTester
 modules:
     enabled:
         - WebDriver:
-            url: 'https://www.google.ru'
+            url: 'http://debug-gaz.loc'
             browser: phantomjs
             window_size: 1366x768
             capabilities:
