@@ -53,4 +53,12 @@ class LoginFormPage
     $I->waitForText('Вход в систему');
   }
 
+  public function enterWithoutRegistration()
+  {
+    $I = $this->I;
+    $I->amOnPage('/');
+    $I->waitForText('Вход в систему');
+    $I->click(self::WITHOUT_REGISTRATION_LINK);
+    $I->waitForText('Процедуры :: Актуальные процедуры');
+  }
 }
