@@ -1,5 +1,9 @@
 <?php
+
 use Page\LoginFormPage;
+use Step\Admin;
+use Step\Customer;
+use Step\Supplier;
 
 class LoginCest
 {
@@ -43,4 +47,29 @@ class LoginCest
      $I->waitForText('Ошибка авторизации. Неверный логин или пароль');
      $I->click('OK');
    }
+
+  public function tripleLoginTest (AcceptanceTester $I) {
+    $I->wantTo('Тройной login/logout');
+//    $admin = new Admin($I);
+//    $admin->login();
+//    $admin->logout();
+//    $customer = new Customer($I);
+//    $customer->login();
+//    $customer->logout();
+//    $supplier = new Supplier($I);
+//    $supplier->login();
+//    $supplier->logout();
+
+    $users = [
+      new Admin($I),
+      new Customer($I),
+      new Supplier($I)
+    ];
+
+    foreach ($users as $user) {
+      $user->login();
+      $user->logout();
+    }
+
+  }
 }
