@@ -12,6 +12,7 @@ namespace Step;
 use Page\CreateProcedureWindow;
 use Page\MenuPage;
 use Page\ProceduresGrid;
+use Page\Values\ApplicationValues;
 use Page\Values\ProcedureValues;
 
 class Customer extends User
@@ -35,5 +36,13 @@ class Customer extends User
 
     $proceduresGrid = new ProceduresGrid($I);
     $proceduresGrid->viewProcedureNotification($procedureValues);
+  }
+
+  public function checkApplicationValues(ProcedureValues $procedureValues, ApplicationValues $applicationValues)
+  {
+    $I = $this->I;
+
+    $proceduresGrid = new ProceduresGrid($I);
+    $proceduresGrid->viewSubmittedApplications($procedureValues, $applicationValues);
   }
 }

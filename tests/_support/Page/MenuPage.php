@@ -17,6 +17,7 @@ class MenuPage
   const TARIFFS_BUTON = 'Абонентские тарифы';
 
   const PROCEDURES_BUTTON = 'Процедуры';
+  const ACTUAL_PROCEDURES_BUTTON = 'Актуальные процедуры';
   const NEW_BUTTON = 'Новая';
 
   private $I;
@@ -47,5 +48,16 @@ class MenuPage
     $I->click(self::PROCEDURES_BUTTON);
     $I->click(self::NEW_BUTTON);
     $I->waitForText('Процедуры :: Новая процедура закупки');
+    $I->wait(3);
+  }
+
+  public function enterProceduresGrid()
+  {
+    $I = $this->I;
+    if (!$I->isTextVisible('Процедуры :: Актуальные процедуры')) {
+      $I->click(self::PROCEDURES_BUTTON);
+      $I->click(self::ACTUAL_PROCEDURES_BUTTON);
+      $I->waitForText('Процедуры :: Актуальные процедуры');
+    }
   }
 }

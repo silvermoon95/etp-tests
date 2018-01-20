@@ -36,21 +36,30 @@ class StagesDateTimeGrid
 
     $I->click(self::EXPIRATION_DATE_FOR_ACCEPTING_APPLICATIONS_FIELD);
     $I->waitForElement(self::DATE_INPUT);
+    $I->wait(1);
     $I->fillField(self::DATE_INPUT, $values->getExpirationDateForAcceptingApplications());
     $I->pressKey(self::DATE_INPUT,WebDriverKeys::ENTER);
 
+    $I->wait(1);
     $I->click(self::EXPIRATION_TIME_FOR_ACCEPTING_APPLICATIONS_FIELD);
     $I->waitForElement(self::TIME_INPUT);
+    $I->wait(1);
     $I->fillField(self::TIME_INPUT, $values->getExpirationTimeForAcceptingApplications());
+    $I->pressKey(self::TIME_INPUT,WebDriverKeys::ENTER);
 
+    $I->wait(1);
     $I->click(self::EXPIRATION_DATE_FOR_SUMMARIZING_FIELD);
     $I->waitForElement(self::DATE_INPUT);
+    $I->wait(1);
     $I->fillField(self::DATE_INPUT, $values->getExpirationDateForSummarizing());
     $I->pressKey(self::DATE_INPUT,WebDriverKeys::ENTER);
 
+    $I->wait(1);
     $I->click(self::EXPIRATION_TIME_FOR_SUMMARIZING_FIELD);
     $I->waitForElement(self::TIME_INPUT);
+    $I->wait(1);
     $I->fillField(self::TIME_INPUT, $values->getExpirationTimeForSummarizing());
+    $I->pressKey(self::TIME_INPUT,WebDriverKeys::ENTER);
   }
 
 }

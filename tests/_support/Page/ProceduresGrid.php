@@ -11,12 +11,21 @@ namespace Page;
 
 use AcceptanceTester;
 use Codeception\Util\Locator;
+use Page\Values\ApplicationValues;
 use Page\Values\ProcedureValues;
 
 class ProceduresGrid
 {
 
   private $I;
+
+  const PROCEDURE_CELL = 'div.x-grid3-cell-inner';
+  const SELECTED_ROW = 'x-grid3-row-selected';
+
+  const VIEW_PROCEDURE_ICON = ['src' => '/ico/applics/announcement.png'];
+  const CREATE_APPLICATION_ICON = ['src' => '/ico/applics/create_applic.png'];
+  const RETURN_PROCEDURE_TO_PREVIOUS_STAGE = ['src' => '/ico/procedures/replay.png'];
+  const SUBMITTED_APPLICATIONS_ICON = ['src' => '/ico/applics/applications.png'];
 
   public function __construct(AcceptanceTester $I)
   {
@@ -26,10 +35,12 @@ class ProceduresGrid
   public function viewProcedureNotification(ProcedureValues $procedureValues)
   {
     $I = $this->I;
-    $procedureCell = Locator::contains('div.x-grid3-cell-inner', $procedureValues->getPurchaseName());
-    $I->click($procedureCell);
-    $viewProcedureNotification = Locator::find('img', ['src'=>'/ico/applics/announcement.png']);
+    $this->clickProcedureRow($procedureValues);
+
+    $viewProcedureNotificationImg = Locator::find('img', self::VIEW_PROCEDURE_ICON);
+    $viewProcedureNotification = Locator::combine(self::SELECTED_ROW, $viewProcedureNotificationImg);
     $I->click($viewProcedureNotification);
+
     $I->waitForText('Извещение о проведении процедуры');
     $I->waitForText($procedureValues->getPurchaseNumber());
     $I->see($procedureValues->getPurchaseName());
@@ -42,5 +53,59 @@ class ProceduresGrid
     $I->see($lotValues->getClassifierOKPD2());
     $I->see($lotValues->getClassifierOKVAD2());
 
+  }
+
+  private function clickProcedureRow(ProcedureValues $procedureValues)
+  {
+    $procedureCell = Locator::contains(self::PROCEDURE_CELL, $procedureValues->getPurchaseName());
+    $this->I->waitForElement($procedureCell);
+    $this->I->click($procedureCell);
+  }
+
+  public function enterCreateApplication(ProcedureValues $procedureValues)
+  {
+    $I = $this->I;
+    $I->wait(2);
+    $this->clickProcedureRow($procedureValues);
+
+    $createApplicationImg = Locator::find('img', self::CREATE_APPLICATION_ICON);
+    $createApplication = Locator::combine(self::SELECTED_ROW, $createApplicationImg);
+    $I->waitForElement($createApplication);
+    $I->wait(2);
+    $I->click($createApplication);
+    $I->waitForText('Заявки :: Заявка на участие в процедуре');
+  }
+
+  public function enterReturnProcedureToPreviousStage(ProcedureValues $procedureValues)
+  {
+    $I = $this->I;
+    $I->wait(2);
+    $this->clickProcedureRow($procedureValues);
+
+    $returnProcedureToPreviousStageImg = Locator::find('img', self::RETURN_PROCEDURE_TO_PREVIOUS_STAGE);
+    $returnProcedureToPreviousStage = Locator::combine(self::SELECTED_ROW, $returnProcedureToPreviousStageImg);
+    $I->waitForElement($returnProcedureToPreviousStage);
+    $I->wait(2);
+    $I->click($returnProcedureToPreviousStage);
+    $I->waitForText('Возвращение лота в предыдущий статус');
+    $I->waitForText($procedureValues->getPurchaseName(), 20);
+  }
+
+  public function viewSubmittedApplications(ProcedureValues $procedureValues, ApplicationValues $applicationValues)
+  {
+    $I = $this->I;
+    $this->clickProcedureRow($procedureValues);
+
+    $submittedApplicationsImg = Locator::find('img', self::SUBMITTED_APPLICATIONS_ICON);
+    $submittedApplications = Locator::combine(self::SELECTED_ROW, $submittedApplicationsImg);
+    $I->wait(2);
+    $I->waitForElement($submittedApplications);
+    $I->wait(2);
+
+    $I->click($submittedApplications);
+    $I->waitForText('Поданные заявки');
+
+    $I->waitForText($applicationValues->getPriceWithNDS());
+    $I->see($applicationValues->getSupplierName());
   }
 }

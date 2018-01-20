@@ -34,12 +34,13 @@ class LoginFormPage
      */
     $I = $this->I;
 
-    $I->amOnPage('/');
+    $I->amOnPage('/#auth/login');
     $I->waitForText('Вход в систему');
     $I->fillField(self::LOGIN_FIELD, $username);
     $I->fillField(self::PASSWORD_FIELD, $password);
     $I->click(self::ENTER_BUTTON);
     $I->waitForText(self::EXIT_BUTTON);
+    $I->wait(1);
   }
 
   /**
