@@ -8,7 +8,12 @@
 
 namespace Page\Values;
 
-
+/**
+ * Набор значений для создания и проверки подаваемой заявки
+ *
+ * Class ApplicationValues
+ * @package Page\Values
+ */
 class ApplicationValues
 {
   //Заявка на участие

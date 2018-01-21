@@ -13,6 +13,12 @@ use AcceptanceTester;
 use Codeception\Util\Locator;
 use Page\Values\TariffValues;
 
+/**
+ * Грид "Актуальные тарифы"
+ *
+ * Class TariffsGrid
+ * @package Page
+ */
 class TariffsGrid
 {
   const CREATE_TARIFF = 'Добавить тариф';
@@ -24,6 +30,9 @@ class TariffsGrid
     $this->I = $I;
   }
 
+  /**
+   * Открыть форму создания тарифа
+   */
   public function openCreateTariffWindow()
   {
     /**
@@ -36,6 +45,11 @@ class TariffsGrid
     $I->waitForText('Редактирование абонентского тарифа');
   }
 
+  /**
+   * Удалить тариф со значениями $values
+   *
+   * @param TariffValues $values
+   */
   public function deleteTariff(TariffValues $values)
   {
     $I = $this->I;

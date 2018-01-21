@@ -12,6 +12,12 @@ namespace Step;
 use AcceptanceTester;
 use Page\LoginFormPage;
 
+/**
+ * Общий класс для всех юзеров
+ *
+ * Class User
+ * @package Step
+ */
 class User
 {
   /*

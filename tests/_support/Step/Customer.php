@@ -15,11 +15,22 @@ use Page\ProceduresGrid;
 use Page\Values\ApplicationValues;
 use Page\Values\ProcedureValues;
 
+/**
+ * Заказчик
+ *
+ * Class Customer
+ * @package Step
+ */
 class Customer extends User
 {
   protected $username = 'Диксон';
   protected $password = '123';
 
+  /**
+   * Создание процедуры
+   *
+   * @param ProcedureValues $procedureValues
+   */
   public function createProcedure(ProcedureValues $procedureValues) {
     $I = $this->I;
 
@@ -31,6 +42,11 @@ class Customer extends User
     $procedureWindow->createProcedure($procedureValues);
   }
 
+  /**
+   * Проверка значений созданной процедуры
+   *
+   * @param ProcedureValues $procedureValues
+   */
   public function checkProcedureValues(ProcedureValues $procedureValues) {
     $I = $this->I;
 
@@ -38,6 +54,12 @@ class Customer extends User
     $proceduresGrid->viewProcedureNotification($procedureValues);
   }
 
+  /**
+   * Проверка значений поданной заявки (лот должен быть на подведении итогов)
+   *
+   * @param ProcedureValues $procedureValues
+   * @param ApplicationValues $applicationValues
+   */
   public function checkApplicationValues(ProcedureValues $procedureValues, ApplicationValues $applicationValues)
   {
     $I = $this->I;

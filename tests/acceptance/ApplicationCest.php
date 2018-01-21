@@ -15,6 +15,11 @@ use Step\Supplier;
  * Time: 21:38
  */
 
+/**
+ * Тест создания процедуры, подачи заявки на неё, перевода в статус "Подведение итогов"
+ *
+ * Class ApplicationCest
+ */
 class ApplicationCest extends CommonCest
 {
   public function ApplicationTest(AcceptanceTester $I)

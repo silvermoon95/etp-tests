@@ -13,6 +13,12 @@ use AcceptanceTester;
 use Codeception\Util\Locator;
 use Page\Values\TariffValues;
 
+/**
+ * Форма создания тарифа
+ *
+ * Class CreateTariffWindow
+ * @package Page
+ */
 class CreateTariffWindow
 {
   protected $ACTIVE_CHECKBOX;
@@ -34,6 +40,11 @@ class CreateTariffWindow
     $this->ACTIVE_CHECKBOX = Locator::contains('label.x-form-cb-label', 'Активен');
   }
 
+  /**
+   * Создание тарифа
+   *
+   * @param TariffValues $values
+   */
   public function createTariff(TariffValues $values)
   {
     /**

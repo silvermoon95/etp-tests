@@ -9,6 +9,12 @@
 namespace Page\Values;
 
 
+/**
+ * Значения для смены статуса лота админом
+ *
+ * Class LotChangeValues
+ * @package Page\Values
+ */
 class LotChangeValues
 {
   /**

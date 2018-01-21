@@ -13,6 +13,12 @@ use AcceptanceTester;
 use Codeception\Util\Locator;
 use Page\Values\LotValues;
 
+/**
+ * Форма создания лота
+ *
+ * Class CreateLotWindow
+ * @package Page
+ */
 class CreateLotWindow
 {
   const SUBJECT_OF_CONTRACT_FIELD = 'textarea[name="subject"]';
@@ -29,7 +35,12 @@ class CreateLotWindow
     $this->I = $I;
   }
 
-  public function createLotValues(LotValues $lotValues)
+  /**
+   * Заполнение значений для создания лота
+   *
+   * @param LotValues $lotValues
+   */
+  public function createLot(LotValues $lotValues)
   {
     $I = $this->I;
 

@@ -9,6 +9,12 @@ namespace Page;
 
 use AcceptanceTester;
 
+/**
+ * Форма логина и логаута
+ *
+ * Class LoginFormPage
+ * @package Page
+ */
 class LoginFormPage
 {
   const LOGIN_FIELD = 'input[name="username"]';
@@ -27,6 +33,12 @@ class LoginFormPage
     $this->I = $I;
   }
 
+  /**
+   * Выполнение входа в систему
+   *
+   * @param string $username Имя пользователя
+   * @param string $password Пароль
+   */
   public function login($username, $password)
   {
     /**
@@ -44,7 +56,7 @@ class LoginFormPage
   }
 
   /**
-   *
+   * Выход из системы
    */
   public function logout()
   {
@@ -54,6 +66,9 @@ class LoginFormPage
     $I->waitForText('Вход в систему');
   }
 
+  /**
+   * Посмотреть закупки без регистрации
+   */
   public function enterWithoutRegistration()
   {
     $I = $this->I;

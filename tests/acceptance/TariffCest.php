@@ -5,6 +5,11 @@ use Page\Values\TariffValues;
 
 use Step\Admin;
 
+/**
+ * Тест создания и удаления тарифа админом
+ *
+ * Class TariffCest
+ */
 class TariffCest extends CommonCest
 {
   //tests

@@ -11,6 +11,12 @@ namespace Page;
 
 use AcceptanceTester;
 
+/**
+ * Панель меню
+ *
+ * Class MenuPage
+ * @package Page
+ */
 class MenuPage
 {
   const FINANCES_BUTTON = 'Финансы';
@@ -27,6 +33,9 @@ class MenuPage
     $this->I = $I;
   }
 
+  /**
+   * Войти в грид тарифов (админ)
+   */
   public function enterTariffs()
   {
     /**
@@ -39,6 +48,9 @@ class MenuPage
     $I->waitForText(TariffsGrid::CREATE_TARIFF);
   }
 
+  /**
+   * Войти в форму создания процедуры (заказчик)
+   */
   public function enterCreateProcedure()
   {
     /**
@@ -51,9 +63,14 @@ class MenuPage
     $I->wait(3);
   }
 
+  /**
+   * Войти в грид процедур
+   */
   public function enterProceduresGrid()
   {
     $I = $this->I;
+
+    // если мы уже на месте - не входим
     if (!$I->isTextVisible('Процедуры :: Актуальные процедуры')) {
       $I->click(self::PROCEDURES_BUTTON);
       $I->click(self::ACTUAL_PROCEDURES_BUTTON);

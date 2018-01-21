@@ -8,7 +8,12 @@
 
 namespace Page\Values;
 
-
+/**
+ * Значения для создания процедуры
+ *
+ * Class ProcedureValues
+ * @package Page\Values
+ */
 class ProcedureValues
 {
   //Общие сведения

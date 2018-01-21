@@ -13,6 +13,12 @@ use AcceptanceTester;
 use Codeception\Util\Locator;
 use Page\Values\ProcedureValues;
 
+/**
+ * Форма создания процедуры
+ *
+ * Class CreateProcedureWindow
+ * @package Page
+ */
 class CreateProcedureWindow
 {
   const PURCHASE_NUMBER_FIELD = 'input[name="procedure_number2"]';
@@ -29,6 +35,11 @@ class CreateProcedureWindow
     $this->I = $I;
   }
 
+  /**
+   * Создание и подпись процедуры
+   *
+   * @param ProcedureValues $procedureValues
+   */
   public function createProcedure(ProcedureValues $procedureValues)
   {
     $I = $this->I;
@@ -45,7 +56,7 @@ class CreateProcedureWindow
     $I->click('Лот 1');
     $I->click('Предмет договора');
     $createLotWindow = new CreateLotWindow($I);
-    $createLotWindow->createLotValues($procedureValues->getLotValues());
+    $createLotWindow->createLot($procedureValues->getLotValues());
     $I->click('Подписать и опубликовать');
     if (!$procedureValues->isTransferToOOS()) {
       $I->waitForText('Предупреждение');

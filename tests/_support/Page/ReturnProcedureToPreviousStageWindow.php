@@ -13,6 +13,12 @@ use AcceptanceTester;
 use Codeception\Util\Locator;
 use Page\Values\LotChangeValues;
 
+/**
+ * Форма смены статуса лота (админ)
+ *
+ * Class ReturnProcedureToPreviousStageWindow
+ * @package Page
+ */
 class ReturnProcedureToPreviousStageWindow
 {
   const STATUS_FIELD = 'input[name="status"]+input';
@@ -27,6 +33,11 @@ class ReturnProcedureToPreviousStageWindow
     $this->I = $I;
   }
 
+  /**
+   * Заполнить значения для смены статуса и сменить статус
+   *
+   * @param LotChangeValues $lotChangeValues
+   */
   public function returnProcedureToPreviousStage(LotChangeValues $lotChangeValues)
   {
     $I = $this->I;

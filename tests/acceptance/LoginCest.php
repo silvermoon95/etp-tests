@@ -5,6 +5,11 @@ use Step\Admin;
 use Step\Customer;
 use Step\Supplier;
 
+/**
+ * Тесты, связанные с авторизацией
+ *
+ * Class LoginCest
+ */
 class LoginCest
 {
      //tests
@@ -50,15 +55,6 @@ class LoginCest
 
   public function tripleLoginTest (AcceptanceTester $I) {
     $I->wantTo('Тройной login/logout');
-//    $admin = new Admin($I);
-//    $admin->login();
-//    $admin->logout();
-//    $customer = new Customer($I);
-//    $customer->login();
-//    $customer->logout();
-//    $supplier = new Supplier($I);
-//    $supplier->login();
-//    $supplier->logout();
 
     $users = [
       new Admin($I),

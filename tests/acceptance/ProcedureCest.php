@@ -4,6 +4,11 @@ use Page\Values\LotValues;
 use Page\Values\ProcedureValues;
 use Step\Customer;
 
+/**
+ * Тест создания процедуры заказчиком
+ *
+ * Class ProcedureCest
+ */
 class ProcedureCest extends CommonCest
 {
   public function ProcedureTest(AcceptanceTester $I)

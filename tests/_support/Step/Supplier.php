@@ -15,11 +15,23 @@ use Page\ProceduresGrid;
 use Page\Values\ApplicationValues;
 use Page\Values\ProcedureValues;
 
+/**
+ * Поставщик
+ *
+ * Class Supplier
+ * @package Step
+ */
 class Supplier extends User
 {
   protected $username = 'Кокос';
   protected $password = '123';
 
+  /**
+   * Подача заявки на участие в процедуре
+   *
+   * @param ProcedureValues $procedureValues
+   * @param ApplicationValues $applicationValues
+   */
   public function createApplication(ProcedureValues $procedureValues, ApplicationValues $applicationValues) {
     $I = $this->I;
 

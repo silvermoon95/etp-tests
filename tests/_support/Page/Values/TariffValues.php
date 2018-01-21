@@ -8,7 +8,12 @@
 
 namespace Page\Values;
 
-
+/**
+ * Значения для создания тарифа
+ *
+ * Class TariffValues
+ * @package Page\Values
+ */
 class TariffValues
 {
   /**

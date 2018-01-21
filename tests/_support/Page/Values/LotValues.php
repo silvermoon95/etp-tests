@@ -8,7 +8,12 @@
 
 namespace Page\Values;
 
-
+/**
+ * Значения для создания лота
+ *
+ * Class LotValues
+ * @package Page\Values
+ */
 class LotValues
 {
   //Лот 1/Предмет договора

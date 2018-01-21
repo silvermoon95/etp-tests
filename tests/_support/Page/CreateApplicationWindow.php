@@ -13,6 +13,12 @@ use AcceptanceTester;
 use Codeception\Util\Locator;
 use Page\Values\ApplicationValues;
 
+/**
+ * Форма создания заявки
+ *
+ * Class CreateApplicationWindow
+ * @package Page
+ */
 class CreateApplicationWindow
 {
   const LEGAL_ADDRESS_OF_PROCUREMENT_PARTICIPANT_FIELD = 'input[name="confirmed_address"]+input';
@@ -32,6 +38,11 @@ class CreateApplicationWindow
     $this->I = $I;
   }
 
+  /**
+   * Создание и подписание заявки
+   *
+   * @param ApplicationValues $applicationValues
+   */
   public function createApplication(ApplicationValues $applicationValues)
   {
     $I = $this->I;

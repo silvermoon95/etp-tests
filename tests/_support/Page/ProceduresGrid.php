@@ -14,6 +14,12 @@ use Codeception\Util\Locator;
 use Page\Values\ApplicationValues;
 use Page\Values\ProcedureValues;
 
+/**
+ * Грид процедур
+ *
+ * Class ProceduresGrid
+ * @package Page
+ */
 class ProceduresGrid
 {
 
@@ -32,6 +38,11 @@ class ProceduresGrid
     $this->I = $I;
   }
 
+  /**
+   * Просмотреть извещение процедуры и проверить соответствие значениям
+   *
+   * @param ProcedureValues $procedureValues
+   */
   public function viewProcedureNotification(ProcedureValues $procedureValues)
   {
     $I = $this->I;
@@ -55,6 +66,11 @@ class ProceduresGrid
 
   }
 
+  /**
+   * Выделить строку с процедурой
+   *
+   * @param ProcedureValues $procedureValues
+   */
   private function clickProcedureRow(ProcedureValues $procedureValues)
   {
     $procedureCell = Locator::contains(self::PROCEDURE_CELL, $procedureValues->getPurchaseName());
@@ -62,6 +78,11 @@ class ProceduresGrid
     $this->I->click($procedureCell);
   }
 
+  /**
+   * Войти в форму подачи заявки (поставщик)
+   *
+   * @param ProcedureValues $procedureValues
+   */
   public function enterCreateApplication(ProcedureValues $procedureValues)
   {
     $I = $this->I;
@@ -76,6 +97,11 @@ class ProceduresGrid
     $I->waitForText('Заявки :: Заявка на участие в процедуре');
   }
 
+  /**
+   * Войти в форму смены статуса лота (админ)
+   *
+   * @param ProcedureValues $procedureValues
+   */
   public function enterReturnProcedureToPreviousStage(ProcedureValues $procedureValues)
   {
     $I = $this->I;
@@ -91,6 +117,12 @@ class ProceduresGrid
     $I->waitForText($procedureValues->getPurchaseName(), 20);
   }
 
+  /**
+   * Войти в форму просмотра поданных заявок и проверить соответствие значений одной из заявок (заказчик)
+   *
+   * @param ProcedureValues $procedureValues
+   * @param ApplicationValues $applicationValues
+   */
   public function viewSubmittedApplications(ProcedureValues $procedureValues, ApplicationValues $applicationValues)
   {
     $I = $this->I;

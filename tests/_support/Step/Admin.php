@@ -18,11 +18,22 @@ use Page\Values\LotChangeValues;
 use Page\Values\ProcedureValues;
 use Page\Values\TariffValues;
 
+/**
+ * Админ
+ *
+ * Class Admin
+ * @package Step
+ */
 class Admin extends User
 {
   protected $username = 'admin';
   protected $password = 'kahkahjoh1';
 
+  /**
+   * Действие создания тарифа
+   *
+   * @param TariffValues $tariff
+   */
   public function createTariff(TariffValues $tariff)
   {
     $I = $this->I;
@@ -38,6 +49,11 @@ class Admin extends User
     $tariffWindow->createTariff($tariff);
   }
 
+  /**
+   * Действие удаления тарифа
+   *
+   * @param TariffValues $tariff
+   */
   public function deleteTariff(TariffValues $tariff)
   {
     $I = $this->I;
@@ -50,6 +66,12 @@ class Admin extends User
     $tariffsGrid->deleteTariff($tariff);
   }
 
+  /**
+   * Смена статуса процедуры
+   *
+   * @param ProcedureValues $procedureValues
+   * @param LotChangeValues $lotChangeValues
+   */
   public function returnProcedureToPreviousStage(ProcedureValues $procedureValues, LotChangeValues $lotChangeValues)
   {
     $I = $this->I;
