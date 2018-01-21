@@ -8,3 +8,9 @@ actor_suffix: Tester
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
+modules:
+    config:
+        Db:
+            dsn: 'pgsql:host=localhost;port=5433;dbname=demo1.etpgpb.ru'
+            user: 'postgres'
+            password: '123'

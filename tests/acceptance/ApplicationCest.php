@@ -15,14 +15,14 @@ use Step\Supplier;
  * Time: 21:38
  */
 
-class ApplicationCest
+class ApplicationCest extends CommonCest
 {
   public function ApplicationTest(AcceptanceTester $I)
   {
     $I->wantTo('Проверка новой заявки');
     $customer = new Customer($I);
 
-    $procedure = new ProcedureValues('123456789012','Тестовая16',false,
+    $procedure = new ProcedureValues('123456789012','Тестовая',false,
       '30.01.2018','20:00',
       '30.01.2018','23:00','Тестовый документ',
       'test.txt', new LotValues('Тестовый','Тест',
@@ -49,5 +49,28 @@ class ApplicationCest
     $customer->login();
     $customer->checkApplicationValues($procedure, $application);
     $customer->logout();
+  }
+
+  protected function cleanup(AcceptanceTester $I)
+  {
+    while ($procedureId = $I->grabFromDatabase('procedures', 'id', ['title' => 'Тестовая'])) {
+      $I->comment("Нашлась удаляемая процедура: $procedureId");
+      $lotId = $I->grabFromDatabase('lots', 'id', ['procedure_id' => $procedureId]);
+
+      if ($lotId) {
+        $applicationId = $I->grabFromDatabase('applications', 'id', ['lot_id' => $lotId]);
+        if ($applicationId) {
+          $I->executeQuery("DELETE FROM applications WHERE lot_id = $lotId;");
+        }
+        $I->executeQuery("DELETE FROM lot_units WHERE lot_id = $lotId;");
+        $I->executeQuery("DELETE FROM lot_okved WHERE lot_id = $lotId;");
+        $I->executeQuery("DELETE FROM lot_nomenclature WHERE lot_id = $lotId;");
+        $I->executeQuery("DELETE FROM lot_delivery_places WHERE lot_id = $lotId;");
+        $I->executeQuery("DELETE FROM lot_customers WHERE lot_id = $lotId;");
+        $I->executeQuery("DELETE FROM lots WHERE procedure_id = $procedureId;");
+      }
+
+      $I->executeQuery("DELETE FROM procedures WHERE id = $procedureId;");
+    };
   }
 }

@@ -5,7 +5,7 @@ use Page\Values\TariffValues;
 
 use Step\Admin;
 
-class TariffCest
+class TariffCest extends CommonCest
 {
   //tests
   public function tariffTest(AcceptanceTester $I)
@@ -22,5 +22,12 @@ class TariffCest
     $admin->logout();
   }
 
+  protected function cleanup(AcceptanceTester $I)
+  {
+    while ($tariffId = $I->grabFromDatabase('tariffs', 'id', ['name' => 'Тестовый'])) {
+      $I->comment("Нашелся удаляемый тариф: $tariffId");
+      $I->executeQuery("DELETE FROM tariffs WHERE id = $tariffId");
+    };
+  }
 
 }

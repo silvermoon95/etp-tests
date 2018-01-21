@@ -15,3 +15,4 @@ modules:
                 phantom.binary.path: 'C:\phantomjs\bin\'
         - \Helper\Acceptance
         - Asserts
+        - Db

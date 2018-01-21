@@ -17,4 +17,9 @@ class Acceptance extends \Codeception\Module
     }
     return true;
   }
+
+  function executeQuery($sql, $params = [])
+  {
+    $this->getModule('Db')->driver->executeQuery($sql, $params);
+  }
 }
